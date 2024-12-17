@@ -1,9 +1,9 @@
 import 'package:breadchain_sdk/config/spacing.dart';
-import 'package:breadchain_sdk/presentation/widgets/wallet_card.dart';
+import 'package:breadchain_sdk/presentation/widgets/profile_card.dart';
 import 'package:flutter/material.dart';
 
 class DashboardScreen extends StatelessWidget {
-  static const route = '/';
+  static const routeName = '/';
 
   const DashboardScreen({super.key});
 
@@ -17,7 +17,7 @@ class DashboardScreen extends StatelessWidget {
           child: Column(
             children: [
               AppSpacing.verticalSpaceSmall,
-              const WalletCard(),
+              const ProfileCard(),
             ],
           ),
         ),
