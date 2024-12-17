@@ -10,7 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
   flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.0.16
+  blurrycontainer: ^2.1.0
 
 dev_dependencies:
   flutter_test:
@@ -24,6 +27,7 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+    - assets/svgs/
   #
   # For details regarding assets in packages, see
   # https://flutter.dev/to/asset-from-package
