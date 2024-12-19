@@ -1,5 +1,6 @@
 import 'package:breadchain_sdk/config/colors.dart';
 import 'package:breadchain_sdk/config/spacing.dart';
+import 'package:breadchain_sdk/presentation/widgets/active_group.dart';
 import 'package:breadchain_sdk/presentation/widgets/profile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -146,7 +147,12 @@ class DashboardScreen extends StatelessWidget {
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w500,
                   ),
-                )
+                ),
+                AppSpacing.verticalSpaceSmall,
+                const ActiveGroup(),
+                AppSpacing.verticalSpaceSmall,
+                const ActiveGroup(),
+                AppSpacing.verticalSpaceSmall,
               ],
             ),
           ),
