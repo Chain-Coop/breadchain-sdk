@@ -37,7 +37,10 @@ class MyHomePage extends StatelessWidget {
       body: Center(
         child: MaterialButton(
           child: const Text('Open SDK'),
-          onPressed: () => openBreadChainSDK(context, initConfig: InitConfig()),
+          onPressed: () => openBreadChainSDK(
+            context,
+            initConfig: InitConfig(),
+          ),
         ),
       ),
     );

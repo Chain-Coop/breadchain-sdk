@@ -1,19 +1,28 @@
-import 'dart:ui';
+import 'package:breadchain_sdk/extensions/build_context.dart';
+import 'package:flutter/material.dart';
 
 import 'package:breadchain_sdk/config/spacing.dart';
 import 'package:breadchain_sdk/presentation/widgets/wallet_card.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ProfileCard extends StatelessWidget {
-  const ProfileCard({super.key});
+  const ProfileCard({
+    super.key,
+    required this.name,
+    required this.address,
+    this.hasNotification = false,
+  });
+
+  final String name;
+  final String address;
+  final bool hasNotification;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 210.h,
+      height: .29.sh,
       child: Stack(
         children: [
           Container(
@@ -25,14 +34,14 @@ class ProfileCard extends StatelessWidget {
                 ),
                 fit: BoxFit.cover,
                 colorFilter: ColorFilter.mode(
-                  Colors.black.withOpacity(0.3),
+                  Colors.black.withValues(alpha: 0.1),
                   BlendMode.darken,
                 ),
               ),
               borderRadius: BorderRadius.circular(15.r),
             ),
             width: double.infinity,
-            height: 170.h,
+            height: .23.sh,
             padding:
                 EdgeInsets.symmetric(horizontal: AppSpacing.horizontalSpacing),
             child: Column(
@@ -64,25 +73,27 @@ class ProfileCard extends StatelessWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text(
+                            Text(
                               "Welcome back!",
-                              style: TextStyle(
-                                color: Color(0xFFE0E0E0),
+                              style: context.textTheme.bodySmall?.copyWith(
+                                color: const Color(0xFFE0E0E0),
                               ),
                             ),
                             SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
                               child: Row(
                                 children: [
-                                  const Text(
-                                    "Mamus",
-                                    style: TextStyle(color: Colors.white),
+                                  Text(
+                                    name,
+                                    style: context.textTheme.bodySmall
+                                        ?.copyWith(color: Colors.white),
                                   ),
                                   AppSpacing.horizontalSpaceSmall,
-                                  const Text(
-                                    '0x56h..76',
-                                    style: TextStyle(
-                                      color: Color(0xFFE2FFD9),
+                                  Text(
+                                    address,
+                                    style:
+                                        context.textTheme.bodySmall?.copyWith(
+                                      color: const Color(0xFFE2FFD9),
                                     ),
                                   )
                                 ],
@@ -116,8 +127,8 @@ class ProfileCard extends StatelessWidget {
             ),
           ),
           Positioned(
-            left: AppSpacing.horizontalSpacing,
-            right: AppSpacing.horizontalSpacing,
+            left: AppSpacing.horizontalSpacing / 2,
+            right: AppSpacing.horizontalSpacing / 2,
             bottom: 0,
             child: const WalletCard(),
           )

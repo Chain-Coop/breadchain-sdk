@@ -31,14 +31,14 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      height: 45.h,
+      height: 48.h,
       child: ElevatedButton(
         style: ButtonStyle(
           elevation: WidgetStateProperty.all<double>(0),
           backgroundColor:
               WidgetStateProperty.resolveWith<Color>((Set<WidgetState> states) {
             if (states.contains(WidgetState.pressed)) {
-              return backgroundColor.withOpacity(0.8);
+              return backgroundColor.withValues(alpha: .8);
             } else if (states.contains(WidgetState.disabled)) {
               return Colors.grey;
             }
