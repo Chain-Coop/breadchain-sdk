@@ -7,6 +7,7 @@ class EventConfig {
 }
 
 enum TapEvent {
-  createSavingGroup,
+  createOpenSavingGroup,
+  createClosedSavingGroup,
   history,
 }

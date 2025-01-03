@@ -13,6 +13,7 @@ class Button extends StatelessWidget {
   final bool pill;
   final String? busyText;
   final ButtonType type;
+  final double? fontSize;
 
   const Button(
     this.text, {
@@ -25,6 +26,7 @@ class Button extends StatelessWidget {
     this.pill = false,
     this.type = ButtonType.primary,
     this.busyText,
+    this.fontSize,
   });
 
   @override
@@ -78,7 +80,7 @@ class Button extends StatelessWidget {
                     text!,
                     style: TextStyle(
                       color: onPressed != null ? textColor : disabledTextColor,
-                      fontSize: 16.0,
+                      fontSize: fontSize ?? 16.sp,
                       fontWeight: FontWeight.w600,
                     ),
                   )
@@ -95,7 +97,7 @@ class Button extends StatelessWidget {
       case ButtonType.primary:
         return AppColors.primary;
       case ButtonType.alternate:
-        return AppColors.secondary;
+        return AppColors.primary.withValues(alpha: .07);
     }
   }
 

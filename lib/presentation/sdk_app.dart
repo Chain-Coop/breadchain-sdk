@@ -55,6 +55,10 @@ class BreadChainSDKApp extends StatelessWidget {
               ],
               theme: ThemeData(
                 scaffoldBackgroundColor: AppColors.scaffoldBackgroundColor,
+                cardTheme: const CardThemeData(
+                  elevation: 2,
+                  color: AppColors.scaffoldBackgroundColor,
+                ),
                 appBarTheme: const AppBarTheme(
                   backgroundColor: Colors.white,
                   centerTitle: true,
@@ -65,12 +69,25 @@ class BreadChainSDKApp extends StatelessWidget {
                   headlineLarge: TextStyle(
                     fontSize: 32.sp,
                     fontWeight: FontWeight.bold,
+                    color: AppColors.textColor,
+                  ),
+                  headlineMedium: TextStyle(
+                    fontSize: 26.sp,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.textColor,
+                  ),
+                  headlineSmall: TextStyle(
+                    fontSize: 20.sp,
+                    color: AppColors.textColor,
+                    fontWeight: FontWeight.bold,
                   ),
                   bodyMedium: TextStyle(
                     fontSize: 16.sp,
+                    color: AppColors.textColor,
                   ),
                   bodySmall: TextStyle(
                     fontSize: 14.sp,
+                    color: AppColors.textColor,
                   ),
                 ),
               ),

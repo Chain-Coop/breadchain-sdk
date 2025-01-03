@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppSpacing {
-  static double horizontalSpacing = 15.w;
+  static double horizontalSpacing = 20.w;
 
   static Widget verticalSpaceTiny = SizedBox(height: 5.h);
   static Widget verticalSpaceSmall = SizedBox(height: 10.h);

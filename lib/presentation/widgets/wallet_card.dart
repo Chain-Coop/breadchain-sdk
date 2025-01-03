@@ -1,88 +1,64 @@
-import 'package:blurrycontainer/blurrycontainer.dart';
+import 'package:breadchain_sdk/extensions/build_context.dart';
+import 'package:flutter/material.dart';
+
 import 'package:breadchain_sdk/config/colors.dart';
 import 'package:breadchain_sdk/config/spacing.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class WalletCard extends StatelessWidget {
-  const WalletCard({super.key});
+  const WalletCard({super.key, this.currency = 'N', this.value = 0.0});
+
+  final String currency;
+  final double value;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12.r),
-        border: Border.all(
-          color: Colors.white,
-          width: 1,
+    return Card(
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12.r),
         ),
-      ),
-      child: BlurryContainer(
-        color: const Color(0xFF1D8500).withAlpha(110),
-        blur: 30,
         padding: EdgeInsets.all(AppSpacing.horizontalSpacing),
-        borderRadius: BorderRadius.circular(12.r),
-        child: Row(
+        child: Column(
           children: [
-            Expanded(
-              flex: 8,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    "Total Balance",
-                    style: TextStyle(color: Color(0xFFE2FFD9)),
-                  ),
-                  AppSpacing.verticalSpaceTiny,
-                  Row(
-                    children: [
-                      SvgPicture.asset(
-                        'assets/svgs/coin.svg',
-                        package: 'breadchain_sdk',
-                      ),
-                      AppSpacing.horizontalSpaceTiny,
-                      Text(
-                        "254,352",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30.sp,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      )
-                    ],
-                  )
-                ],
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('Total group fund'),
+                AppSpacing.horizontalSpaceSmall,
+                const Icon(Icons.visibility_off),
+              ],
             ),
-            Expanded(
-              flex: 2,
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: SizedBox(
-                  width: 40.w,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      side: const BorderSide(
-                        color: Colors.white,
-                        width: 1,
-                      ),
-                      backgroundColor: AppColors.primary,
-                      padding: EdgeInsets.zero,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.r),
-                      ),
-                    ),
-                    iconAlignment: IconAlignment.start,
-                    child: SvgPicture.asset(
-                      'assets/svgs/plus.svg',
-                      package: 'breadchain_sdk',
-                    ),
+            AppSpacing.verticalSpaceSmall,
+            Text(
+              '$currency ${value.toStringAsFixed(2)}',
+              style: context.textTheme.headlineMedium,
+            ),
+            AppSpacing.verticalSpaceSmall,
+            const Divider(
+              color: AppColors.borderColor,
+            ),
+            AppSpacing.verticalSpaceSmall,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('Total Gains'),
+                AppSpacing.horizontalSpaceTiny,
+                SvgPicture.asset(
+                  'assets/svgs/gain.svg',
+                  package: 'breadchain_sdk',
+                ),
+                AppSpacing.horizontalSpaceTiny,
+                Text(
+                  '0%',
+                  style: context.textTheme.bodySmall?.copyWith(
+                    color: Colors.green,
                   ),
                 ),
-              ),
-            )
+              ],
+            ),
+            AppSpacing.verticalSpaceSmall,
           ],
         ),
       ),
