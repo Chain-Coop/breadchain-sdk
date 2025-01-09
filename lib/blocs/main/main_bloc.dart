@@ -13,7 +13,14 @@ class MainBloc extends Bloc<MainEvent, MainState> {
     on<_RouteChanged>(_routeChanged);
   }
 
-  void _init(_Init event, Emitter<MainState> emit) {}
+  void _init(_Init event, Emitter<MainState> emit) {
+    if (!state.initialized) {
+      emit(state.copyWith(
+        initConfig: event.initConfig,
+        initialized: true,
+      ));
+    }
+  }
 
   void _routeChanged(_RouteChanged event, Emitter<MainState> emit) {
     emit(MainState.initial(canPop: event.route == DashboardScreen.routeName));

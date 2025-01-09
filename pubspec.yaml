@@ -1,7 +1,7 @@
 name: breadchain_sdk
 description: 'A new Flutter package project.'
 version: 0.0.1
-homepage:
+repository: https://github.com/Chain-Coop/breadchain-sdk
 
 scripts:
   gen-force: 'dart run build_runner build --delete-conflicting-outputs'

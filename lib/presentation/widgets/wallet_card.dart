@@ -7,10 +7,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class WalletCard extends StatelessWidget {
-  const WalletCard({super.key, this.currency = 'N', this.value = 0.0});
+  const WalletCard({
+    super.key,
+    required this.currency,
+    required this.value,
+    required this.balanceVisible,
+  });
 
   final String currency;
   final double value;
+  final bool balanceVisible;
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +33,14 @@ class WalletCard extends StatelessWidget {
               children: [
                 const Text('Total group fund'),
                 AppSpacing.horizontalSpaceSmall,
-                const Icon(Icons.visibility_off),
+                Icon(
+                  balanceVisible ? Icons.visibility_off : Icons.visibility,
+                ),
               ],
             ),
             AppSpacing.verticalSpaceSmall,
             Text(
-              '$currency ${value.toStringAsFixed(2)}',
+              '$currency ${balanceVisible ? value.toStringAsFixed(2) : '****'}',
               style: context.textTheme.headlineMedium,
             ),
             AppSpacing.verticalSpaceSmall,

@@ -12,12 +12,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class BreadChainSDKApp extends StatelessWidget {
   const BreadChainSDKApp({
     super.key,
-    this.initConfig,
+    required this.initConfig,
     this.pageStorageBucket,
     required this.navigatorKey,
   });
 
-  final InitConfig? initConfig;
+  final InitConfig initConfig;
   final GlobalKey<NavigatorState> navigatorKey;
   final PageStorageBucket? pageStorageBucket;
 
@@ -92,7 +92,9 @@ class BreadChainSDKApp extends StatelessWidget {
                 ),
               ),
               routes: {
-                DashboardScreen.routeName: (context) => const DashboardScreen(),
+                DashboardScreen.routeName: (context) => DashboardScreen(
+                      initConfig: initConfig,
+                    ),
                 CreateSavingGroupScreen.routeName: (context) =>
                     const CreateSavingGroupScreen(),
               },

@@ -8,7 +8,7 @@ GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 void openBreadChainSDK(BuildContext context, {InitConfig? initConfig}) {
   context.navigator.push(MaterialPageRoute(
     builder: (context) => BreadChainSDKApp(
-      initConfig: initConfig,
+      initConfig: initConfig ?? const InitConfig(),
       navigatorKey: navigatorKey,
     ),
   ));

@@ -1,3 +1,4 @@
+import 'package:breadchain_sdk/models/init_config.dart';
 import 'package:breadchain_sdk/presentation/widgets/scrollable_pad.dart';
 import 'package:flutter/material.dart';
 
@@ -10,15 +11,25 @@ import 'package:breadchain_sdk/presentation/widgets/container_button.dart';
 import 'package:breadchain_sdk/presentation/widgets/saving_group.dart';
 import 'package:breadchain_sdk/presentation/widgets/wallet_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends HookWidget {
   static const String routeName = '/';
 
-  const DashboardScreen({super.key});
+  const DashboardScreen({
+    super.key,
+    required this.initConfig,
+  });
+
+  final InitConfig initConfig;
 
   @override
   Widget build(BuildContext context) {
+    useEffect(() {
+      context.read<MainBloc>().add(MainEvent.init(initConfig));
+      return null;
+    }, []);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Saving Cycle'),
@@ -44,12 +55,13 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ),
                     Center(
-                        child: Text(
-                      'Group Savings',
-                      style: TextStyle(
-                        color: Colors.white,
+                      child: Text(
+                        'Group Savings',
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
-                    )),
+                    ),
                   ],
                 ),
               ),
@@ -60,7 +72,11 @@ class DashboardScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const WalletCard(),
+                    WalletCard(
+                      value: state.initConfig.walletBalance?.toDouble() ?? 0,
+                      currency: state.initConfig.primaryFiatCurrency,
+                      balanceVisible: state.walletBalanceVisible,
+                    ),
                     AppSpacing.verticalSpaceSmall,
                     Row(
                       children: [
@@ -99,7 +115,7 @@ class DashboardScreen extends StatelessWidget {
                         title: 'Create Open Group',
                         subtitle: 'This clearly implies that\nanyone can join',
                         onTap: () {
-                          state.initConfig?.eventConfig?.onTap
+                          state.initConfig.eventConfig?.onTap
                               ?.call(TapEvent.createClosedSavingGroup);
                         },
                       ),
@@ -114,7 +130,7 @@ class DashboardScreen extends StatelessWidget {
                         subtitle:
                             'This implies that\nyou can only join by invite',
                         onTap: () {
-                          state.initConfig?.eventConfig?.onTap
+                          state.initConfig.eventConfig?.onTap
                               ?.call(TapEvent.createClosedSavingGroup);
                         },
                       ),
