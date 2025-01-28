@@ -1,6 +1,6 @@
 name: breadchain_sdk
-description: 'A new Flutter package project.'
-version: 0.0.1
+description: Breadchain SDK for Flutter
+version: 0.0.2
 repository: https://github.com/Chain-Coop/breadchain-sdk
 
 scripts:

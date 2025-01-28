@@ -4,7 +4,7 @@ import 'package:breadchain_sdk/blocs/main/main_bloc.dart';
 import 'package:breadchain_sdk/blocs/saving_group/saving_group_bloc.dart';
 import 'package:breadchain_sdk/config/colors.dart';
 import 'package:breadchain_sdk/models/init_config.dart';
-import 'package:breadchain_sdk/presentation/screens/create_saving_group.dart';
+import 'package:breadchain_sdk/presentation/screens/create_open_group.dart';
 import 'package:breadchain_sdk/presentation/screens/dashboard.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -95,8 +95,8 @@ class BreadChainSDKApp extends StatelessWidget {
                 DashboardScreen.routeName: (context) => DashboardScreen(
                       initConfig: initConfig,
                     ),
-                CreateSavingGroupScreen.routeName: (context) =>
-                    const CreateSavingGroupScreen(),
+                CreateOpenGroupScreen.routeName: (context) =>
+                    const CreateOpenGroupScreen(),
               },
             ),
           ),

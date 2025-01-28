@@ -1,4 +1,5 @@
 import 'package:breadchain_sdk/models/init_config.dart';
+import 'package:breadchain_sdk/presentation/screens/create_open_group.dart';
 import 'package:breadchain_sdk/presentation/widgets/scrollable_pad.dart';
 import 'package:flutter/material.dart';
 
@@ -59,6 +60,7 @@ class DashboardScreen extends HookWidget {
                         'Group Savings',
                         style: TextStyle(
                           color: Colors.white,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
@@ -117,6 +119,8 @@ class DashboardScreen extends HookWidget {
                         onTap: () {
                           state.initConfig.eventConfig?.onTap
                               ?.call(TapEvent.createClosedSavingGroup);
+                          context.navigator
+                              .pushNamed(CreateOpenGroupScreen.routeName);
                         },
                       ),
                     ),
