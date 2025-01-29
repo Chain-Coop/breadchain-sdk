@@ -11,6 +11,7 @@ class TextInputWidget extends StatelessWidget {
     this.subTitle,
     this.maxLength,
     this.maxLines,
+    this.keyboardType,
   });
 
   final String title;
@@ -18,6 +19,7 @@ class TextInputWidget extends StatelessWidget {
   final String? subTitle;
   final int? maxLength;
   final int? maxLines;
+  final TextInputType? keyboardType;
 
   @override
   Widget build(BuildContext context) {
@@ -31,46 +33,44 @@ class TextInputWidget extends StatelessWidget {
           ),
         ),
         AppSpacing.verticalSpaceTiny,
-        Card(
-          margin: EdgeInsets.zero,
-          child: TextField(
-            maxLength: maxLength,
-            buildCounter: (BuildContext context,
-                {required int currentLength,
-                required bool isFocused,
-                required int? maxLength}) {
-              return null;
-            },
-            maxLines: maxLines,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.r),
-                borderSide: const BorderSide(
-                  color: Color(0xFFE3E3E3),
-                  width: .5,
-                ),
+        TextField(
+          maxLength: maxLength,
+          buildCounter: (BuildContext context,
+              {required int currentLength,
+              required bool isFocused,
+              required int? maxLength}) {
+            return null;
+          },
+          keyboardType: keyboardType,
+          maxLines: maxLines,
+          decoration: InputDecoration(
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              borderSide: const BorderSide(
+                color: Color(0xFFE3E3E3),
+                width: .5,
               ),
-              fillColor: Colors.white,
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.r),
-                borderSide: const BorderSide(
-                  color: Color(0xFFE3E3E3),
-                  width: .5,
-                ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(12.r),
-                borderSide: const BorderSide(
-                  color: Color(0xFFE3E3E3),
-                  width: .5,
-                ),
-              ),
-              filled: true,
-              hintStyle: const TextStyle(
-                color: Color(0xFFC6C6C6),
-              ),
-              hintText: hintText,
             ),
+            fillColor: Colors.white,
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              borderSide: const BorderSide(
+                color: Color(0xFFE3E3E3),
+                width: .5,
+              ),
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.r),
+              borderSide: const BorderSide(
+                color: Color(0xFFE3E3E3),
+                width: .5,
+              ),
+            ),
+            filled: true,
+            hintStyle: const TextStyle(
+              color: Color(0xFFC6C6C6),
+            ),
+            hintText: hintText,
           ),
         ),
         AppSpacing.verticalSpaceTiny,

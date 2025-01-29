@@ -5,14 +5,13 @@ class SavingGroupState with _$SavingGroupState {
   const factory SavingGroupState.initial({
     @Default(SavingGroupTitleFormz.initial()) SavingGroupTitleFormz title,
     @Default(0) double depositAmount,
+    @Default(1) int createOpenGroupStage,
   }) = _Initial;
 }
 
 //==============================================================================
 // FORMZ
 //==============================================================================
-
-enum ValidationError { invalid }
 
 //==============================================================================
 // FORMZ - Saving Group Title

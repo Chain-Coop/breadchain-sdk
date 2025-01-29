@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:breadchain_sdk/blocs/saving_group/saving_group_bloc.dart';
 import 'package:breadchain_sdk/config/colors.dart';
 import 'package:breadchain_sdk/config/spacing.dart';
+import 'package:breadchain_sdk/extensions/build_context.dart';
 import 'package:breadchain_sdk/presentation/widgets/button.dart';
 import 'package:breadchain_sdk/presentation/widgets/currency_pill.dart';
 import 'package:breadchain_sdk/presentation/widgets/text_input_widget.dart';
 import 'package:breadchain_sdk/presentation/widgets/two_pair_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+
+part 'open_group_stage_1.dart';
+part 'open_group_stage_2.dart';
 
 class CreateOpenGroupScreen extends StatelessWidget {
   static const String routeName = 'create-saving-group';
@@ -66,60 +71,50 @@ class CreateOpenGroupScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const TextInputWidget(
-                      title: 'Group title',
-                      subTitle: 'Max. 100 characters.',
-                      maxLength: 100,
-                    ),
-                    AppSpacing.verticalSpaceSmall,
-                    const TextInputWidget(
-                      title: 'Group Description',
-                      maxLines: 3,
-                    ),
-                    AppSpacing.verticalSpaceMedium,
-                    const Center(
-                      child: Text(
-                        "What Currency are you Saving in?",
-                        style: TextStyle(fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                    AppSpacing.verticalSpaceMedium,
-                    TwoPairWidget(
-                      child1: Padding(
-                        padding: EdgeInsets.only(right: 5.w),
-                        child: const CurrencyPill(
-                          currency: 'Lisk',
-                          currencyIconPath: 'assets/svgs/lisk.svg',
-                          selected: true,
+                    LayoutBuilder(builder: (context, constraint) {
+                      switch (state.createOpenGroupStage) {
+                        case 1:
+                          return const _OpenGroupStage1();
+                        case 2:
+                          return const _OpenGroupStage2();
+                        default:
+                          return const SizedBox.shrink();
+                      }
+                    }),
+                    AppSpacing.verticalSpaceHuge,
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 6,
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: GestureDetector(
+                              onTap: () {
+                                if (state.createOpenGroupStage == 1) {
+                                  context.navigator.pop();
+                                } else {
+                                  context.read<SavingGroupBloc>().add(
+                                      const SavingGroupEvent
+                                          .previousSavingGroupStage());
+                                }
+                              },
+                              child: SvgPicture.asset(
+                                'assets/svgs/previous_step.svg',
+                                package: 'breadchain_sdk',
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                      child2: Padding(
-                        padding: EdgeInsets.only(left: 5.w),
-                        child: const CurrencyPill(
-                          currency: 'USDC',
-                          currencyIconPath: 'assets/svgs/usdc.svg',
+                        Expanded(
+                          flex: 5,
+                          child: Button('Next', onPressed: () {
+                            context.read<SavingGroupBloc>().add(
+                                const SavingGroupEvent.nextSavingGroupStage());
+                          }),
                         ),
-                      ),
+                      ],
                     ),
-                    AppSpacing.verticalSpaceSmall,
-                    TwoPairWidget(
-                      child1: Padding(
-                        padding: EdgeInsets.only(right: 5.w),
-                        child: const CurrencyPill(
-                          currency: 'USDT',
-                          currencyIconPath: 'assets/svgs/usdt.svg',
-                        ),
-                      ),
-                      child2: Padding(
-                        padding: EdgeInsets.only(left: 5.w),
-                        child: const CurrencyPill(
-                          currency: 'Naira',
-                          currencyIconPath: 'assets/images/ngn.png',
-                        ),
-                      ),
-                    ),
-                    AppSpacing.verticalSpaceMedium,
-                    Button('Continue', onPressed: () {}),
+                    AppSpacing.verticalSpaceHuge,
                   ],
                 ),
               ),

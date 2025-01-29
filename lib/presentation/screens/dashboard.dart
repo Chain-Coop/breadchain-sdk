@@ -1,5 +1,5 @@
 import 'package:breadchain_sdk/models/init_config.dart';
-import 'package:breadchain_sdk/presentation/screens/create_open_group.dart';
+import 'package:breadchain_sdk/presentation/screens/create_open_group/create_open_group.dart';
 import 'package:breadchain_sdk/presentation/widgets/scrollable_pad.dart';
 import 'package:flutter/material.dart';
 
