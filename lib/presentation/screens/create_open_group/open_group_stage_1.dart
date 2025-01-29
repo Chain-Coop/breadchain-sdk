@@ -29,7 +29,7 @@ class _OpenGroupStage1 extends StatelessWidget {
         TwoPairWidget(
           child1: Padding(
             padding: EdgeInsets.only(right: 5.w),
-            child: const CurrencyPill(
+            child: const SelectableCurrencyPill(
               currency: 'Lisk',
               currencyIconPath: 'assets/svgs/lisk.svg',
               selected: true,
@@ -37,7 +37,7 @@ class _OpenGroupStage1 extends StatelessWidget {
           ),
           child2: Padding(
             padding: EdgeInsets.only(left: 5.w),
-            child: const CurrencyPill(
+            child: const SelectableCurrencyPill(
               currency: 'USDC',
               currencyIconPath: 'assets/svgs/usdc.svg',
             ),
@@ -47,14 +47,14 @@ class _OpenGroupStage1 extends StatelessWidget {
         TwoPairWidget(
           child1: Padding(
             padding: EdgeInsets.only(right: 5.w),
-            child: const CurrencyPill(
+            child: const SelectableCurrencyPill(
               currency: 'USDT',
               currencyIconPath: 'assets/svgs/usdt.svg',
             ),
           ),
           child2: Padding(
             padding: EdgeInsets.only(left: 5.w),
-            child: const CurrencyPill(
+            child: const SelectableCurrencyPill(
               currency: 'Naira',
               currencyIconPath: 'assets/images/ngn.png',
             ),

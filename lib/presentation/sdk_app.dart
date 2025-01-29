@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:breadchain_sdk/blocs/main/main_bloc.dart';
 import 'package:breadchain_sdk/blocs/saving_group/saving_group_bloc.dart';
 import 'package:breadchain_sdk/config/colors.dart';
-import 'package:breadchain_sdk/models/init_config.dart';
 import 'package:breadchain_sdk/presentation/screens/create_open_group/create_open_group.dart';
 import 'package:breadchain_sdk/presentation/screens/dashboard.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,12 +11,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class BreadChainSDKApp extends StatelessWidget {
   const BreadChainSDKApp({
     super.key,
-    required this.initConfig,
     this.pageStorageBucket,
     required this.navigatorKey,
   });
 
-  final InitConfig initConfig;
   final GlobalKey<NavigatorState> navigatorKey;
   final PageStorageBucket? pageStorageBucket;
 
@@ -92,9 +89,7 @@ class BreadChainSDKApp extends StatelessWidget {
                 ),
               ),
               routes: {
-                DashboardScreen.routeName: (context) => DashboardScreen(
-                      initConfig: initConfig,
-                    ),
+                DashboardScreen.routeName: (context) => const DashboardScreen(),
                 CreateOpenGroupScreen.routeName: (context) =>
                     const CreateOpenGroupScreen(),
               },

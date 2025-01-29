@@ -1,3 +1,4 @@
+import 'package:breadchain_sdk/presentation/widgets/selectable_text_pill.dart';
 import 'package:flutter/material.dart';
 
 import 'package:breadchain_sdk/blocs/saving_group/saving_group_bloc.dart';
@@ -5,7 +6,7 @@ import 'package:breadchain_sdk/config/colors.dart';
 import 'package:breadchain_sdk/config/spacing.dart';
 import 'package:breadchain_sdk/extensions/build_context.dart';
 import 'package:breadchain_sdk/presentation/widgets/button.dart';
-import 'package:breadchain_sdk/presentation/widgets/currency_pill.dart';
+import 'package:breadchain_sdk/presentation/widgets/selectable_currency_pill.dart';
 import 'package:breadchain_sdk/presentation/widgets/text_input_widget.dart';
 import 'package:breadchain_sdk/presentation/widgets/two_pair_widget.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,16 +36,24 @@ class CreateOpenGroupScreen extends StatelessWidget {
               Container(
                 color: AppColors.primary,
                 padding: EdgeInsets.all(AppSpacing.horizontalSpacing / 2),
-                child: const Stack(
+                child: Stack(
                   children: [
                     Positioned(
                       left: 30,
-                      child: Icon(
-                        Icons.chevron_left,
-                        color: Colors.white,
+                      child: GestureDetector(
+                        onTap: () {
+                          context.read<SavingGroupBloc>().add(
+                              const SavingGroupEvent
+                                  .firstOpenSavingGroupStage());
+                          context.navigator.pop();
+                        },
+                        child: const Icon(
+                          Icons.chevron_left,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
-                    Center(
+                    const Center(
                       child: Text(
                         'Create Open Group',
                         style: TextStyle(
@@ -95,7 +104,7 @@ class CreateOpenGroupScreen extends StatelessWidget {
                                 } else {
                                   context.read<SavingGroupBloc>().add(
                                       const SavingGroupEvent
-                                          .previousSavingGroupStage());
+                                          .previousOpenSavingGroupStage());
                                 }
                               },
                               child: SvgPicture.asset(
@@ -109,7 +118,8 @@ class CreateOpenGroupScreen extends StatelessWidget {
                           flex: 5,
                           child: Button('Next', onPressed: () {
                             context.read<SavingGroupBloc>().add(
-                                const SavingGroupEvent.nextSavingGroupStage());
+                                const SavingGroupEvent
+                                    .nextOpenSavingGroupStage());
                           }),
                         ),
                       ],

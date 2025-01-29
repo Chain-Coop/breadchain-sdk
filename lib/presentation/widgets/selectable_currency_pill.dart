@@ -4,12 +4,13 @@ import 'package:breadchain_sdk/config/colors.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CurrencyPill extends StatelessWidget {
-  const CurrencyPill(
-      {super.key,
-      required this.currencyIconPath,
-      required this.currency,
-      this.selected = false});
+class SelectableCurrencyPill extends StatelessWidget {
+  const SelectableCurrencyPill({
+    super.key,
+    required this.currencyIconPath,
+    required this.currency,
+    this.selected = false,
+  });
 
   final String currencyIconPath;
   final String currency;
@@ -18,7 +19,7 @@ class CurrencyPill extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: AppColors.primaryLight,
         borderRadius: BorderRadius.circular(8.r),

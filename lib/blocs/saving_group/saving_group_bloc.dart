@@ -10,8 +10,9 @@ part 'saving_group_bloc.freezed.dart';
 class SavingGroupBloc extends Bloc<SavingGroupEvent, SavingGroupState> {
   SavingGroupBloc() : super(const _Initial()) {
     on<_DepositAmountChanged>(_depositAmountChanged);
-    on<_NextSavingGroupStage>(_nextSavingGroupStage);
-    on<_PreviousSavingGroupStage>(_previousSavingGroupStage);
+    on<_NextOpenSavingGroupStage>(_nextOpenSavingGroupStage);
+    on<_PreviousOpenSavingGroupStage>(_previousOpenSavingGroupStage);
+    on<_FirstOpenSavingGroupStage>(_firstOpenSavingGroupStage);
   }
 
   void _depositAmountChanged(
@@ -19,13 +20,18 @@ class SavingGroupBloc extends Bloc<SavingGroupEvent, SavingGroupState> {
     emit(state.copyWith(depositAmount: event.depositAmount));
   }
 
-  void _nextSavingGroupStage(
-      _NextSavingGroupStage event, Emitter<SavingGroupState> emit) {
+  void _nextOpenSavingGroupStage(
+      _NextOpenSavingGroupStage event, Emitter<SavingGroupState> emit) {
     emit(state.copyWith(createOpenGroupStage: state.createOpenGroupStage + 1));
   }
 
-  void _previousSavingGroupStage(
-      _PreviousSavingGroupStage event, Emitter<SavingGroupState> emit) {
+  void _previousOpenSavingGroupStage(
+      _PreviousOpenSavingGroupStage event, Emitter<SavingGroupState> emit) {
     emit(state.copyWith(createOpenGroupStage: state.createOpenGroupStage - 1));
+  }
+
+  void _firstOpenSavingGroupStage(
+      _FirstOpenSavingGroupStage event, Emitter<SavingGroupState> emit) {
+    emit(state.copyWith(createOpenGroupStage: 1));
   }
 }

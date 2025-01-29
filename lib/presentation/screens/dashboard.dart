@@ -1,6 +1,3 @@
-import 'package:breadchain_sdk/models/init_config.dart';
-import 'package:breadchain_sdk/presentation/screens/create_open_group/create_open_group.dart';
-import 'package:breadchain_sdk/presentation/widgets/scrollable_pad.dart';
 import 'package:flutter/material.dart';
 
 import 'package:breadchain_sdk/blocs/main/main_bloc.dart';
@@ -8,29 +5,23 @@ import 'package:breadchain_sdk/config/colors.dart';
 import 'package:breadchain_sdk/config/spacing.dart';
 import 'package:breadchain_sdk/extensions/build_context.dart';
 import 'package:breadchain_sdk/models/event_config.dart';
+import 'package:breadchain_sdk/presentation/screens/create_open_group/create_open_group.dart';
 import 'package:breadchain_sdk/presentation/widgets/container_button.dart';
 import 'package:breadchain_sdk/presentation/widgets/saving_group.dart';
+import 'package:breadchain_sdk/presentation/widgets/scrollable_pad.dart';
 import 'package:breadchain_sdk/presentation/widgets/wallet_card.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class DashboardScreen extends HookWidget {
+class DashboardScreen extends StatelessWidget {
   static const String routeName = '/';
 
   const DashboardScreen({
     super.key,
-    required this.initConfig,
   });
-
-  final InitConfig initConfig;
 
   @override
   Widget build(BuildContext context) {
-    useEffect(() {
-      context.read<MainBloc>().add(MainEvent.init(initConfig));
-      return null;
-    }, []);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Saving Cycle'),
